@@ -24,14 +24,26 @@ class Critter(object):
     def talk(self):
         print('Меня зовут', self.name, ', и сейчас чувствую себя', self.mood, 'сейчас\n')
         self.__pass_time()
-    def eat(self, food = 4):
-        print('Мрр... Спасибо!')
+    def eat_full(self, food = 5):
+        print('Мрр... Спасибо было сытно !')
         self.hunger -= food
         if self.hunger < 0:
             self.hunger = 0
         self.__pass_time()
-    def play(self, fun = 4):
-        print('Уиии!')
+    def eat_little(self, food = 3):
+        print('Мрр... Спасибо перекусил немного !')
+        self.hunger -= food
+        if self.hunger < 0:
+            self.hunger = 0
+        self.__pass_time()
+    def play_good(self, fun = 5):
+        print('Уиии!'отлично поиграли)
+        self.boredom -= fun
+        if self. boredom < 0:
+            self.boredom = 0
+        self.__pass_time()
+    def play_little(self, fun = 3):
+        print('Уиии!'поиграли немного)
         self.boredom -= fun
         if self. boredom < 0:
             self.boredom = 0
@@ -46,8 +58,10 @@ def main():
             Моя зверюшка
             0 - Выйти
             1 - Узнать о самочувствии зверюшки
-            2 - Покормить зверюшку
-            3 - Поиграть со зверюшкой
+            2 - Покормить зверюшку плотно
+            3 - Покормить немного зверюшку
+            4 - Долго играть со зверюшкой
+            5 - Чуток поиграть со зверюшкой
             ''')
         choice = input('Ваш выбор: ')
         print()
@@ -57,12 +71,18 @@ def main():
         #беседа со зверюшкой
         elif choice == '1':
             crit.talk()
-        #кормление зверюшки
+        # плотное кормление зверюшки
         elif choice == '2':
-            crit.eat()
-        # игра со зверюшкой
+            crit.eat_full()
+         # немного кормим зверюшку
         elif choice == '3':
-            crit.play()
+            crit.eat_little()
+        #долгая игра со зверюшкой
+        elif choice == '4':
+            crit.play_good()
+        #короткая игра со зверюшкой
+        elif choice == '5':
+            crit.play_little()
         # непонятный пользовательский ввод
         else:
             print('Извините, в меню нет пункта', choice)
