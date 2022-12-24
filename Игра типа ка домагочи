@@ -1,9 +1,16 @@
-#Моя зверюшка
-#Виртуальный питомец, о котором пользователь может заботиться
+#Моя зооферма
+#Виртуальные питомцы, о котором пользователь может заботиться.
+import random
 class Critter(object):
     '''Виртуальный питомец'''
-    def __init__(self, name, hunger = 0,boredom = 0):
+    total = 0
+    @staticmethod
+    def status():
+        print('\nВсего зверюшек сейчас', Critter.total)
+    def __init__(self, name, hunger = random.randrange(15),boredom = random.randrange(15)):
+        print('Появилась на свет новая зверюшка!')
         self.name = name
+        Critter.total +=1
         self.hunger = hunger
         self.boredom = boredom
     def __pass_time(self):
@@ -49,19 +56,23 @@ class Critter(object):
             self.boredom = 0
         self.__pass_time()
 def main():
-    crit_name = input('Как вы назовете свою зверюшку?')
-    crit = Critter(crit_name)
+    crit_name = input('Как вы назовете свою первую зверюшку?')
+    crit1 = Critter(crit_name)
+    crit_name = input('Как вы назовете свою вторую зверюшку?')
+    crit2 = Critter(crit_name)
+    crit_name = input('Как вы назовете свою третью зверюшку?')
+    crit3 = Critter(crit_name)
     choice = None
     while choice != '0':
         print \
             ('''
-            Моя зверюшка
+            Моя Зооферма
             0 - Выйти
-            1 - Узнать о самочувствии зверюшки
-            2 - Покормить зверюшку плотно
-            3 - Покормить немного зверюшку
-            4 - Долго играть со зверюшкой
-            5 - Чуток поиграть со зверюшкой
+            1 - Узнать о самочувствии зверюшек
+            2 - Покормить зверюшек плотно
+            3 - Покормить зверюшек немного
+            4 - Поиграть со зверюшками хорошенько
+            5 - Поиграть со зверюшками немного
             ''')
         choice = input('Ваш выбор: ')
         print()
@@ -70,22 +81,31 @@ def main():
             print('До свидания.')
         #беседа со зверюшкой
         elif choice == '1':
-            crit.talk()
-        # плотное кормление зверюшки
+            crit1.talk()
+            crit2.talk()
+            crit3.talk()
+        #кормление зверюшки плотно
         elif choice == '2':
-            crit.eat_full()
-         # немного кормим зверюшку
+            crit1.eat_full()
+            crit2.eat_full()
+            crit3.eat_full()
+        # кормление немножно зверушки
         elif choice == '3':
-            crit.eat_little()
-        #долгая игра со зверюшкой
+            crit1.eat_little()
+            crit2.eat_little()
+            crit3.eat_little()
+        # долгая игра со зверюшкой
         elif choice == '4':
-            crit.play_good()
-        #короткая игра со зверюшкой
+            crit1.play_good()
+            crit2.play_good()
+            crit3.play_good()
+        # короткая игра со зверюшкой
         elif choice == '5':
-            crit.play_little()
+            crit1.play_little()
+            crit2.play_little()
+            crit3.play_little()
         # непонятный пользовательский ввод
         else:
             print('Извините, в меню нет пункта', choice)
 main()
 input('\n\nНажмите Enter, чтобы выйти.')
-
